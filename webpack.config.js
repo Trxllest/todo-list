@@ -1,10 +1,22 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
     entry: './src/index.js',
+    plugins: [
+        new HtmlWebpackPlugin({
+          title: 'ToDo List Test',
+          //load tmeplate
+          template: 'index.html',
+          //inject javascript at the end of the body
+          inject: 'body'
+        }),
+    ],
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
+        clean: true,
     },
     module: {
         rules: [
