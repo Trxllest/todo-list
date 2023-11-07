@@ -1,22 +1,27 @@
 
 
 export default class toDo {
-    constructor(task,dueDate,desc) {
+    constructor(task,dueDate,desc,priority='low') { // str, datetime-local, str, str
         this.task = task;
         this.dueDate = dueDate; // <input type="datetime-local">
         this.desc = desc;
+        this.priority = priority;
     }
 
-    sayTask() {
-        alert(this.task);
+    get task() {
+        return this._task;
     }
 
-    saydueDate() {
-        alert(this.dueDate);
+    set task(name) {
+        this._task = name;
     }
 
-    logDesc() {
-        console.log(this.desc);
+    get desc() {
+        return this._desc;
+    }
+
+    set desc(name) {
+        this._task = name;
     }
 
     editTitle(title) {
@@ -28,9 +33,16 @@ export default class toDo {
         this.desc = newDesc;
     }
 
-    // editDueDate(newDate) {
-    //     this.dueDate = new Date()
-    // }
+    editDueDate(newDate) {
+        this.dueDate = newDate
+    }
+
+    editPriority(newPriotity) {
+        this.priority = newPriotity
+    }
+
+
+
 }
 
 
