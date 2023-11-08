@@ -21,7 +21,7 @@ export default class toDo {
     }
 
     set desc(name) {
-        this._task = name;
+        this._desc = name;
     }
 
     editTitle(title) {
@@ -41,7 +41,9 @@ export default class toDo {
         this.priority = newPriotity
     }
 
-
+    toString(){
+        return `Title: ${this.task}, description: ${this.desc}, Due ${this.dueDate} with a ${this.priority} priority.`
+    }
 
 }
 
