@@ -7,6 +7,10 @@ export default class project {
         this.toDos = {};
     }
 
+    get getProj() {
+        return this.name;
+    }
+
     clearAll() {
         this.toDos = {}
     }
