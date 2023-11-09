@@ -34,7 +34,7 @@ export default class project {
         const keys = Object.keys(tasks);
         // const values = Object.entries(tasks)
         for (let k of keys) {
-            console.log(`Task: ${k} is to... ${tasks[k].desc} \n`);
+            console.log(`Task: ${k} is to... ${tasks[k]._desc} \n`);
         }
     }
 
