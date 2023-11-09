@@ -9,4 +9,7 @@ let testProj = new project('TestP1');
 testProj.addTask(testTask);
 testProj.addTask(testTask2);
 console.log(JSON.stringify(testProj.logtd(), null, 2));
+// testProj.logTasks();
+testProj.storeProject();
+testProj.getStoredProj();
 testProj.logTasks();

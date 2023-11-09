@@ -2,9 +2,9 @@
 
 export default class project {
 
-    constructor(name, toDos = {}) {
+    constructor(name) {
         this.name = name;
-        this.toDos = toDos;
+        this.toDos = {};
     }
 
     clearAll() {
@@ -42,4 +42,20 @@ export default class project {
         return this.toDos;
     }
 
+    storeProject() {
+        localStorage.setItem(this.name, JSON.stringify(this.toDos));
+    }
+
+    getStoredProj() {
+        const storedData = localStorage.getItem(this.name);
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            console.log(`Here are the items: `, parsedData);
+            // replace this.todos with stored data
+            this.toDos = parsedData;
+            localStorage.removeItem(this.name);
+        } else {
+            console.log(`No data found in localStorage for project: ${this.name}`);
+        }
+    }
 }
