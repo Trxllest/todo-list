@@ -1,4 +1,4 @@
-
+ 
 
 export default class project {
 
@@ -6,11 +6,7 @@ export default class project {
         this.name = name;
         this.toDos = {};
     }
-
-    get getProj() {
-        return this.name;
-    }
-
+    
     clearAll() {
         this.toDos = {}
     }

@@ -24,6 +24,14 @@ export default class toDo {
         this._desc = name;
     }
 
+    set dueDate(date){
+        this._dueDate = date;
+    }
+
+    get dueDate(){
+        return this._dueDate;
+    }
+
 
     toString(){
         return `Title: ${this.title}, description: ${this.desc}, Due ${this.dueDate} with a ${this.priority} priority.`
