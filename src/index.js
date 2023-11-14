@@ -13,8 +13,8 @@ testProj.addTask(testTask);
 testProj.addTask(testTask2);
 console.log(JSON.stringify(testProj.logtd(), null, 2));
 // testProj.logTasks();
-testProj.storeProject();
-testProj.getStoredProj();
+// testProj.storeProject();
+// testProj.getStoredProj();
 testProj.logTasks();
 
 let testTask3 = new toDo("Walk Dog", "2023-1-11", "Walk her 2kms");
@@ -24,12 +24,15 @@ let testProj2 = new project('TestP2');
 testProj2.addTask(testTask3);
 testProj2.addTask(testTask4);
 
+
+testProj2.clearTask(testTask3);
+
 let page = new projects('Proj1');
 page.addProjs(testProj);
 page.addProjs(testProj2);
 
-page.storeProjs();
-page.getProjs();
+// page.storeProjs();
+// page.getProjs();
 
 /* 
 Storage architecture:
@@ -62,6 +65,7 @@ let selectedProj = document.querySelector('.nav-projs').children.item(0).textCon
 
 for (let t in page.projs[String(selectedProj)].toDos) {
     let task = page.projs[String(selectedProj)].toDos[t]
+    console.log(task);
     toDoComp(task);
 }
 

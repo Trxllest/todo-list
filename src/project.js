@@ -4,58 +4,48 @@ export default class project {
 
     constructor(name) {
         this.name = name;
-        this.toDos = {};
+        this._tasks = [];
+    }
+
+    get tasks() {
+        return this._tasks;
+    }
+
+    set tasks(newTasks) {
+        this._tasks = newTasks;
     }
     
     clearAll() {
-        this.toDos = {}
+        this._tasks = [];
     }
 
     clearTask(task) { //toDo title
-        if (this.toDos[task.title] !== undefined) {
-            delete this.toDos[task.title];
+        const name = task.title
+        let index = this._tasks.findIndex((el) => el.title === name);
+        if (index > -1){
+            const deletedEl = this._tasks.splice(index,1); // array
+            console.log(`${deletedEl[0].title} was deleted`);
+            return deletedEl; // array
         }
     }
 
     addTask(task) { //ToDo object
-        if (this.toDos[task.title] === undefined) {
-            this.toDos[task.title] = task;
+        if (this._tasks.findIndex((el) => el.title === task.title) === -1) {
+            this._tasks.push(task);
         } else {
-            alert(`${this.toDos[task.title]} already exists`);
+            alert(`${this._tasks[task.title]} already exists`);
         }
     }
 
     logTasks() {
-        // for (let t in this.toDos) {
-
-        //     console.log(`Task:${this.toDos[t]}, Desc:${this.toDos[t]}`);
-        // }
-        const tasks = this.toDos //Object.entries(this.toDos);
-        const keys = Object.keys(tasks);
-        // const values = Object.entries(tasks)
-        for (let k of keys) {
-            console.log(`Task: ${k} is to... ${tasks[k]._desc} \n`);
+        const tasksArray = this._tasks //Object.entries(this.tasks);
+        for (let el of tasksArray) {
+            console.log('Logging Tasks...\n');
+            console.log(`Task: ${el.title} is to... ${el.desc} \n`);
         }
     }
 
     logtd() {
-        return this.toDos;
-    }
-
-    storeProject() {
-        localStorage.setItem(this.name, JSON.stringify(this.toDos));
-    }
-
-    getStoredProj() {
-        const storedData = localStorage.getItem(this.name);
-        if (storedData) {
-            const parsedData = JSON.parse(storedData);
-            console.log(`Here are the items: `, parsedData);
-            // replace this.todos with stored data
-            this.toDos = parsedData;
-            localStorage.removeItem(this.name);
-        } else {
-            console.log(`No data found in localStorage for project: ${this.name}`);
-        }
+        return this.tasks;
     }
 }

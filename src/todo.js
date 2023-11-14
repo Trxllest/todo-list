@@ -32,6 +32,14 @@ export default class toDo {
         return this._dueDate;
     }
 
+    get priority() {
+        return this._priority;
+    }
+
+    set priority(level){
+        this._priority = level;
+    }
+
 
     toString(){
         return `Title: ${this.title}, description: ${this.desc}, Due ${this.dueDate} with a ${this.priority} priority.`
