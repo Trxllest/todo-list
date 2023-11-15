@@ -1,32 +1,41 @@
+import project from "./project";
+
 export default class projects {
 
-    constructor() {
-        this.projs = {};
-        this.name = "proj-pages"
+    constructor(projects = [new project('Project')]) {
+        this._projects = projects; // array
+        this._currentProject = this._projects[0];
     }
 
-    addProjs(projs) { //ToDo object
-        if (this.projs[projs.name] === undefined) {
-            this.projs[projs.name] = projs;
+    get projects(){
+        return this._projects;
+    }
+
+    get currentProject() {
+        if (this._currentProject === undefined){
+            console.error('There is no projects')
         } else {
-            alert(`${this.projs[projs.name]} already exists`);
+            return this._currentProject;
         }
     }
 
-    storeProjs() {
-        localStorage.setItem("proj-pages", JSON.stringify(this.projs));
+    addProj(proj){
+        this._projects.push(proj);
     }
 
-    getProjs() {
-        const storedProj = localStorage.getItem(this.name);
-        if (storedProj) {
-            const parsedData = JSON.parse(storedProj);
-            console.log(`Here are the Projs: `, parsedData);
-            // replace this.proj with stored data
-            this.projs = parsedData;
-            localStorage.removeItem(this.name);
+    clearAllProjs() {
+        this._projects = [];
+    }
+
+    switchCurrProj(proj) { // name of project we want to switch to
+        const name = proj.name;
+        let index = this._projects.findIndex((el) => el.name === name);
+        if (index > -1){
+            this._currentProject = proj;
+            return this._currentProject;
         } else {
-            console.log(`No data found in localStorage for projects}`);
+            console.error('Project does not exist')
         }
     }
+
 }

@@ -3,7 +3,7 @@
 export default class project {
 
     constructor(name) {
-        this.name = name;
+        this._name = name;
         this._tasks = [];
     }
 
@@ -14,6 +14,15 @@ export default class project {
     set tasks(newTasks) {
         this._tasks = newTasks;
     }
+
+    get name() {
+        return this._name;
+    }
+
+    set name(newName) {
+        this._name = newName;
+    }
+
     
     clearAll() {
         this._tasks = [];
