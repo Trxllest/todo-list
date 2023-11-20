@@ -6,6 +6,7 @@ export default class toDo {
         this._dueDate = dueDate; // <input type="datetime-local">
         this._desc = desc;
         this._priority = priority;
+        this._id = this.generateID();
     }
 
     get title() {
@@ -38,6 +39,16 @@ export default class toDo {
 
     set priority(level){
         this._priority = level;
+    }
+
+    get id(){
+        return this._id;
+    }
+
+    generateID(){
+        let id = crypto.randomUUID();
+        console.log(`This is the ID: ${id}`);
+        return id;
     }
 
 

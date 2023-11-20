@@ -6,6 +6,9 @@ export default function toDoComp(task) {
     const card = document.createElement('div');
     card.classList.add('toDo');
 
+    //add data attribute
+    card.dataset.toDoId = task.id;
+
     const cardLeft = document.createElement('div');
     cardLeft.classList.add('left-card')
     const cardRight = document.createElement('div');
@@ -29,10 +32,16 @@ export default function toDoComp(task) {
     const deleteTodo = new Image();
     deleteTodo.src = deleteIcon;
     deleteTodo.classList.add('icon')
+    deleteTodo.classList.add('delete-icon')
+    deleteTodo.addEventListener('click', () => {
+        
+        card.remove();
+    })
 
     const editTodo = new Image();
     editTodo.src = editIcon;
     editTodo.classList.add('icon')
+    editTodo.classList.add('edit-icon')
 
     cardRight.appendChild(editTodo);
     cardRight.appendChild(deleteTodo);
@@ -41,5 +50,7 @@ export default function toDoComp(task) {
     card.appendChild(cardRight);
 
     document.querySelector('.tasks').appendChild(card);
+
+    console.log(`the cards id is: ${card.dataset.toDoId}`);
 
 }

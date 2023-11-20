@@ -5,6 +5,7 @@ export default class project {
     constructor(name) {
         this._name = name;
         this._tasks = [];
+        this._id = this.generateID();
     }
 
     get tasks() {
@@ -23,26 +24,36 @@ export default class project {
         this._name = newName;
     }
 
+    get id(){
+        return this._id;
+    }
+
+    generateID(){
+        let id = crypto.randomUUID();
+        console.log(`This is the ID: ${id}`);
+        return id;
+    }
     
     clearAll() {
         this._tasks = [];
     }
 
-    clearTask(task) { //toDo title
-        const name = task.title
-        let index = this._tasks.findIndex((el) => el.title === name);
-        if (index > -1){
-            const deletedEl = this._tasks.splice(index,1); // array
-            console.log(`${deletedEl[0].title} was deleted`);
-            return deletedEl; // array
-        }
-    }
-
     addTask(task) { //ToDo object
-        if (this._tasks.findIndex((el) => el.title === task.title) === -1) {
+        if (this._tasks.findIndex((el) => el.id === task.id) === -1) {
             this._tasks.push(task);
         } else {
             alert(`${this._tasks[task.title]} already exists`);
+        }
+    }
+
+    deleteTask(taskID) {
+        let index = this._tasks.findIndex((el) => el.id === taskID);
+        if (index === -1) {
+            console.error(`The task: ${taskID} does not exist`);
+        } else {
+            const deletedEl = this._tasks.splice(index,1); // array
+            console.log(`${deletedEl[0].title} was deleted`);
+            return deletedEl; // array
         }
     }
 

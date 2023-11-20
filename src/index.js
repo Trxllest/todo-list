@@ -43,6 +43,7 @@ submitBtn.addEventListener('click', (e) =>{
     priority.value = '';
     render.loadItems(myPage.currentProject);
     dialogBox.close();
+
 });
 
 cancelAdd.addEventListener('click', () => {

@@ -8,6 +8,10 @@ export default function projComp(proj) {
     console.log(proj);
     navTitle.textContent = proj.name;
 
+    //add ID to data attributes
+    navTitle.dataset.projId = proj.id;
+    console.log(`the projects id is: ${navTitle.dataset.projId}`);
+
     let nav = document.querySelector('.nav-projs');
     nav.appendChild(navTitle);
 }
