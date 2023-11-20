@@ -2,9 +2,9 @@ import project from "./project";
 
 export default class projects {
 
-    constructor(projects = [new project('Project')]) {
+    constructor(projects = [new project('Project1')]) {
         this._projects = projects; // array
-        this._currentProject = this._projects[0];
+        this._currentProject = projects[0];
     }
 
     get projects(){
@@ -21,10 +21,12 @@ export default class projects {
 
     addProj(proj){
         this._projects.push(proj);
+        this.switchCurrProj(proj);
     }
 
     clearAllProjs() {
-        this._projects = [];
+        this._projects = [new project('Project')];
+        this._currentProject = this._projects[0];
     }
 
     switchCurrProj(proj) { // name of project we want to switch to

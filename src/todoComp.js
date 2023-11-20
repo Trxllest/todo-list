@@ -40,6 +40,6 @@ export default function toDoComp(task) {
     card.appendChild(cardLeft);
     card.appendChild(cardRight);
 
-    document.querySelector('.items').appendChild(card);
+    document.querySelector('.tasks').appendChild(card);
 
 }
