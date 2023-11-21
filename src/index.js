@@ -3,6 +3,7 @@ import * as render from './renderFxns';
 import toDo from './todo';
 import project from './project';
 
+
 ///
 
 const addbtn = document.querySelector('.add-item');
@@ -66,3 +67,5 @@ submitProjBtn.addEventListener('click', (e) => {
 cancelAddProj.addEventListener('click',  () => {
     projDialog.close();
 });
+
+export {myPage};
