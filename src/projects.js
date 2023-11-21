@@ -24,15 +24,22 @@ export default class projects {
         this.switchCurrProj(proj);
     }
 
-    deleteProj(proj) {
-        let index = this._projects.findIndex((el) => el.id === proj.id);
+    deleteProj(projID) {
+        let index = this._projects.findIndex((el) => el.id === projID);
         if (index === -1) {
-            console.error(`The proj: ${proj.name} does not exist`);
+            console.error(`The proj: ${projID} does not exist`);
         } else {
             const deletedEl = this._projects.splice(index,1); // array
             console.log(`${deletedEl[0].name} was deleted`);
+            if (this._projects.length < 1) {
+                console.log('Undefineddd');
+                this._currentProject = undefined;
+            } else {
+                this._currentProject = this._projects[this._projects.length - 1];
+            }
             return deletedEl; // array
         }
+        
     }
 
     clearAllProjs() {

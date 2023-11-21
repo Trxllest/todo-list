@@ -8,7 +8,10 @@ export function renderPage(page) {
 
     //load assets
     loadNav(page); // nav bar
-    loadItems(page.currentProject) // list of todos   
+    if (page.projects.length > 0){
+        loadItems(page.currentProject) // list of todos   
+    }
+    
 }
 
 
