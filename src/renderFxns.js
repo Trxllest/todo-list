@@ -26,8 +26,9 @@ export function loadNav(page) { //projects Obj
 
 export function loadItems(proj) { //current proj
     document.querySelector('.tasks').textContent = '';
-
-    if (proj.tasks.length > 0){
+    if (typeof proj === "undefined"){
+        document.querySelector('.tasks').textContent = ''; 
+    } else if (proj.tasks.length > 0){
         for (let t of proj.tasks) {
             
             toDoComp(t);

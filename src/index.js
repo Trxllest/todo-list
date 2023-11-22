@@ -31,6 +31,8 @@ getSavedProjects();
 let loadedPage = JSON.parse(localStorage.getItem('myTodo'));
 console.log(loadedPage);
 
+myPage.findProj('bb202301-ee6b-4a4f-9377-13a37ad24abc');
+
 render.renderPage(myPage);
 
 addbtn.addEventListener('click', () => {
@@ -90,7 +92,7 @@ function getSavedProjects() {
         console.log(sprojects);
 
         for (let p of sprojects) {
-            let proj = new project(p['_name']);
+            let proj = new project(p['_name'], p['_id']);
 
             for (let t of p['_tasks']){
                 let task = new toDo(t['_title'], t['_dueDate'], t['_desc'], t['_priority']);

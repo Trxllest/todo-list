@@ -2,10 +2,10 @@
 
 export default class project {
 
-    constructor(name) {
+    constructor(name, id = this.generateID()) {
         this._name = name;
         this._tasks = [];
-        this._id = this.generateID();
+        this._id = id;
     }
 
     get tasks() {

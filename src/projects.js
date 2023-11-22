@@ -58,4 +58,12 @@ export default class projects {
         }
     }
 
+    findProj(projID) {
+        let proj = this._projects.find(function(p) {
+            console.log(p);
+            return p.id === projID;
+        })
+        console.log(proj);
+        return proj;
+    }
 }

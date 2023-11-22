@@ -1,6 +1,7 @@
 import deleteIcon from './imgs/delete-outline.svg';
 import editIcon from './imgs/pencil-outline.svg';
 import { myPage, saveProjects } from '.';
+import { renderPage } from './renderFxns';
 
 export default function toDoComp(task) {
 
