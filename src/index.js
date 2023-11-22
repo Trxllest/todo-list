@@ -81,24 +81,30 @@ export function saveProjects(page) {
 }
 
 function getSavedProjects() {
-    myPage = new projects();
+    
     const storedPage = JSON.parse(localStorage.getItem('myTodo'));
-
+    let projArray = [];
     if (storedPage) {
-        // console.log(storedPage);
-        let projects = storedPage['_projects'];
-        console.log(projects);
-        for (let p of projects) {
+        console.log(storedPage);
+        let sprojects = storedPage['_projects'];
+        console.log(sprojects);
+
+        for (let p of sprojects) {
             let proj = new project(p['_name']);
 
             for (let t of p['_tasks']){
                 let task = new toDo(t['_title'], t['_dueDate'], t['_desc'], t['_priority']);
                 proj.addTask(task);
             }
-            
-            myPage.addProj(proj);
+
+            projArray.push(proj);
         }
+        myPage = new projects(projArray);
+    } else {
+        myPage = new projects();
     }
+
+    
 }
 
 
