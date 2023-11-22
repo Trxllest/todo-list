@@ -1,6 +1,6 @@
 import deleteIcon from './imgs/delete-outline.svg';
 import editIcon from './imgs/pencil-outline.svg';
-import { myPage } from '.';
+import { myPage, saveProjects } from '.';
 
 export default function toDoComp(task) {
 
@@ -36,6 +36,7 @@ export default function toDoComp(task) {
     deleteTodo.classList.add('delete-icon')
     deleteTodo.addEventListener('click', () => {
         myPage.currentProject.deleteTask(task.id);
+        saveProjects(myPage);
         card.remove();
     })
 

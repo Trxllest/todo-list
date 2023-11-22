@@ -1,4 +1,4 @@
-import { myPage } from '.';
+import { myPage, saveProjects } from '.';
 import deleteIcon from './imgs/delete-outline.svg';
 import { renderPage } from './renderFxns';
 
@@ -23,6 +23,7 @@ export default function projComp(proj) {
     deleteProj.classList.add('delete-icon')
     deleteProj.addEventListener('click', () => {
         myPage.deleteProj(proj.id);
+        saveProjects(myPage);
         navTitleElements.remove();
         renderPage(myPage);
         console.log(myPage);

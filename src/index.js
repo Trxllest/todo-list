@@ -25,8 +25,12 @@ const cancelAddProj = document.getElementById('cancelAddProj');
 let myPage;
 
 //load new page or...
+getSavedProjects();
 
-myPage = new projects();
+
+let loadedPage = JSON.parse(localStorage.getItem('myTodo'));
+console.log(loadedPage);
+
 render.renderPage(myPage);
 
 addbtn.addEventListener('click', () => {
@@ -44,7 +48,7 @@ submitBtn.addEventListener('click', (e) =>{
     priority.value = '';
     render.loadItems(myPage.currentProject);
     dialogBox.close();
-
+    saveProjects(myPage);
 });
 
 cancelAdd.addEventListener('click', () => {
@@ -62,10 +66,76 @@ submitProjBtn.addEventListener('click', (e) => {
     render.renderPage(myPage);
     projTitle.value = '';
     projDialog.close();
+    saveProjects(myPage);
 });
 
 cancelAddProj.addEventListener('click',  () => {
     projDialog.close();
 });
 
+
+export function saveProjects(page) {
+    page = JSON.stringify(page);
+    localStorage.setItem('myTodo', page);
+    console.log('saved')
+}
+
+function getSavedProjects() {
+    myPage = new projects();
+    const storedPage = JSON.parse(localStorage.getItem('myTodo'));
+
+    if (storedPage) {
+        // console.log(storedPage);
+        let projects = storedPage['_projects'];
+        console.log(projects);
+        for (let p of projects) {
+            let proj = new project(p['_name']);
+
+            for (let t of p['_tasks']){
+                let task = new toDo(t['_title'], t['_dueDate'], t['_desc'], t['_priority']);
+                proj.addTask(task);
+            }
+            
+            myPage.addProj(proj);
+        }
+    }
+}
+
+
 export {myPage};
+
+
+/* 
+
+MpPage [
+    Projects [
+        todos
+    ]
+]
+
+{
+    "_projects": [
+        {
+            "_name": "Project1",
+            "_tasks": [],
+            "_id": "b28849ca-05ac-4b60-87e9-6a1fad8a15e7"
+        },
+        {
+            "_name": "fbsdfb",
+            "_tasks": [],
+            "_id": "6a901a1a-bc38-4d71-8a7c-1e3720836088"
+        },
+        {
+            "_name": "yukytk",
+            "_tasks": [],
+            "_id": "f7896769-28f5-4aad-ad77-3dd45ea42574"
+        }
+    ],
+    "_currentProject": {
+        "_name": "yukytk",
+        "_tasks": [],
+        "_id": "f7896769-28f5-4aad-ad77-3dd45ea42574"
+    }
+}
+
+*/

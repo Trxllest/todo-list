@@ -25,9 +25,9 @@ export function loadNav(page) { //projects Obj
 
 
 export function loadItems(proj) { //current proj
-    if (proj.tasks.length > 0){
+    document.querySelector('.tasks').textContent = '';
 
-        document.querySelector('.tasks').textContent = '';
+    if (proj.tasks.length > 0){
         for (let t of proj.tasks) {
             
             toDoComp(t);
