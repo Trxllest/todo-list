@@ -5,6 +5,12 @@ import { renderPage } from './renderFxns';
 
 export default function toDoComp(task) {
 
+    // Reference to the dialog
+    const taskDialog = document.getElementById('task-dialog');
+
+    // Reference to the form in the dialog
+    const taskForm = document.getElementById('taskForm');
+
     const card = document.createElement('div');
     card.classList.add('toDo');
 
@@ -47,6 +53,41 @@ export default function toDoComp(task) {
     editTodo.classList.add('edit-icon')
     editTodo.dataset.toDoId = task.id;
 
+    editTodo.addEventListener('click', () => {
+        const oldTitle = task.title || '';
+        const oldDate = task.dueDate || '';
+        const oldDesc = task.desc || '';
+        const oldPriority = task.priority || 'low';
+
+        document.getElementById('title').value = oldTitle;
+        const formattedDate = oldDate ? new Date(oldDate).toISOString().slice(0, 16) : '';
+        document.getElementById('date').value = formattedDate;
+        document.getElementById('desc').value = oldDesc;
+        document.getElementById('priority').value = oldPriority;
+
+        taskDialog.show();
+    })
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent the default form submission behavior
+    
+        // Get the values from the form
+        const newTitle = document.getElementById('title').value;
+        const newDate = document.getElementById('date').value;
+        const newDesc = document.getElementById('desc').value;
+        const newPriority = document.getElementById('priority').value;
+
+        task.title = newTitle;
+        task.desc = newDesc;
+        task.dueDate = newDate;
+        task.priority = newPriority;
+
+        title.textContent = task.title;
+        due.textContent = task.dueDate.toDateString();
+
+    });
+    
     cardRight.appendChild(editTodo);
     cardRight.appendChild(deleteTodo);
 
@@ -59,7 +100,3 @@ export default function toDoComp(task) {
 
 }
 
-function editCard(taskID) {
-    
-
-}
