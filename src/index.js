@@ -35,11 +35,12 @@ myPage.findProj('bb202301-ee6b-4a4f-9377-13a37ad24abc');
 
 render.renderPage(myPage);
 
+// Open dialog to add a todo card
 addbtn.addEventListener('click', () => {
     dialogBox.showModal();
 });
 
-
+// Submit new a todo card
 submitBtn.addEventListener('click', (e) =>{
     e.preventDefault();
     const todo = new toDo(title.value, date.value, desc.value ,priority.value);
@@ -53,14 +54,18 @@ submitBtn.addEventListener('click', (e) =>{
     saveProjects(myPage);
 });
 
+// Cancel adding a card
 cancelAdd.addEventListener('click', () => {
     dialogBox.close();
 });
 
+
+// Add a new project
 addProjBtn.addEventListener('click', () => {
     projDialog.showModal();
 });
 
+// Submit a project
 submitProjBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const newProj = new project(projTitle.value);

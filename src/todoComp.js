@@ -45,6 +45,7 @@ export default function toDoComp(task) {
     editTodo.src = editIcon;
     editTodo.classList.add('icon')
     editTodo.classList.add('edit-icon')
+    editTodo.dataset.toDoId = task.id;
 
     cardRight.appendChild(editTodo);
     cardRight.appendChild(deleteTodo);
@@ -55,5 +56,10 @@ export default function toDoComp(task) {
     document.querySelector('.tasks').appendChild(card);
 
     console.log(`the cards id is: ${card.dataset.toDoId}`);
+
+}
+
+function editCard(taskID) {
+    
 
 }
