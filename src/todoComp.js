@@ -1,7 +1,6 @@
 import deleteIcon from './imgs/delete-outline.svg';
 import editIcon from './imgs/pencil-outline.svg';
 import { myPage, saveProjects } from '.';
-import { renderPage } from './renderFxns';
 
 export default function toDoComp(task) {
 
@@ -10,6 +9,8 @@ export default function toDoComp(task) {
 
     // Reference to the form in the dialog
     const taskForm = document.getElementById('taskForm');
+
+    const submitBtn = document.getElementById('submitBtn');
 
     const card = document.createElement('div');
     card.classList.add('toDo');
@@ -66,9 +67,11 @@ export default function toDoComp(task) {
         document.getElementById('priority').value = oldPriority;
 
         taskDialog.show();
+        submitBtn.classList.add('subEdit');
+        submitBtn.classList.remove('subAdd');
     })
 
-    const submitBtn = document.getElementById('submitBtn');
+
     submitBtn.addEventListener('click', (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
     
@@ -86,8 +89,20 @@ export default function toDoComp(task) {
         title.textContent = task.title;
         due.textContent = task.dueDate.toDateString();
 
+        // Reset form and close dialog
+        title.value = '';
+        date.value = '';
+        desc.value = '';
+        priority.value = '';
+        submitBtn.classList.add('subAdd');
+        submitBtn.classList.remove('subEdit');
+        taskDialog.close();
+
+        // Save changes and update the display
+        saveProjects(myPage);
+        render.loadItems(myPage.currentProject);
     });
-    
+
     cardRight.appendChild(editTodo);
     cardRight.appendChild(deleteTodo);
 
@@ -100,3 +115,4 @@ export default function toDoComp(task) {
 
 }
 
+//  when add todo is clicked create a dialog object for the card
