@@ -42,7 +42,7 @@ addbtn.addEventListener('click', () => {
 
 submitBtn.addEventListener('click', (e) =>{
     e.preventDefault();
-    const todo = new toDo(title.value, date.value ,desc.value ,priority.value);
+    const todo = new toDo(title.value, date.value, desc.value ,priority.value);
     myPage.currentProject.addTask(todo);
     title.value = '';
     date.value = ''; 

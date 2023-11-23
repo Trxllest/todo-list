@@ -25,7 +25,7 @@ export default function toDoComp(task) {
     // Due Date
     let due = document.createElement('div');
     due.classList.add('to-do-dueDate');
-    due.textContent = task.dueDate; 
+    due.textContent = task.dueDate.toDateString(); 
 
     cardLeft.appendChild(title);
     cardLeft.appendChild(due);

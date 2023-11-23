@@ -1,9 +1,9 @@
 
 
 export default class toDo {
-    constructor(title,dueDate,desc,priority='low') { // str, datetime-local, str, str
+    constructor(title, dueDate,desc,priority='low') { // str, datetime-local, str, str
         this._title = title;
-        this._dueDate = dueDate; // <input type="datetime-local">
+        this._dueDate = this.dateFormatter(dueDate); // <input type="datetime-local">
         this._desc = desc;
         this._priority = priority;
         this._id = this.generateID();
@@ -26,7 +26,12 @@ export default class toDo {
     }
 
     set dueDate(date){
-        this._dueDate = date;
+        if (date === ''){
+            this._dueDate = new Date();
+        } else {
+            this._dueDate = new Date(date);
+        }
+       
     }
 
     get dueDate(){
@@ -44,6 +49,18 @@ export default class toDo {
     get id(){
         return this._id;
     }
+
+    dateFormatter(date) {
+        if (date === ''){
+            let d = new Date()
+            console.log(d);
+            return d
+        } else {
+            let d = new Date(date)
+            console.log(d)
+            return d
+        }
+    } 
 
     generateID(){
         let id = crypto.randomUUID();
