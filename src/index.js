@@ -29,9 +29,6 @@ let myPage;
 getSavedProjects();
 
 
-let loadedPage = JSON.parse(localStorage.getItem('myTodo'));
-console.log(loadedPage);
-
 render.renderPage(myPage);
 
 // Open dialog to add a todo card
@@ -52,7 +49,7 @@ submitBtn.addEventListener('click', (e) =>{
 
     if (taskId) {
         // Editing an existing task
-        console.log('Edited task');
+        // console.log('Edited task');
         const task = myPage.currentProject.tasks.find(t => t.id === taskId);
         if (task) {
             task.title = newTitle;
@@ -62,7 +59,7 @@ submitBtn.addEventListener('click', (e) =>{
         }
     } else {
         // Adding a new task
-        console.log('added a new task');
+        // console.log('added a new task');
         const todo = new toDo(newTitle, newDate, newDesc, newPriority);
         myPage.currentProject.addTask(todo);
     }
@@ -110,7 +107,7 @@ cancelAddProj.addEventListener('click',  () => {
 export function saveProjects(page) {
     page = JSON.stringify(page);
     localStorage.setItem('myTodo', page);
-    console.log('saved')
+    // console.log('saved')
 }
 
 function getSavedProjects() {
@@ -118,10 +115,9 @@ function getSavedProjects() {
     const storedPage = JSON.parse(localStorage.getItem('myTodo'));
     let projArray = [];
     if (storedPage) {
-        console.log(storedPage);
-        let sprojects = storedPage['_projects'];
-        console.log(sprojects);
 
+        let sprojects = storedPage['_projects'];
+        
         for (let p of sprojects) {
             let proj = new project(p['_name'], p['_id']);
 

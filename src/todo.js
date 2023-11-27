@@ -53,11 +53,9 @@ export default class toDo {
     dateFormatter(date) {
         if (date === ''){
             let d = new Date()
-            console.log(d);
             return d
         } else {
             let d = new Date(date)
-            console.log(d)
             return d
         }
     } 

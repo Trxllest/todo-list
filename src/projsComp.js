@@ -9,7 +9,7 @@ export default function projComp(proj) {
     let navTitle = document.createElement('div');
     navTitleElements.classList.add('nav-title-elements');
     navTitle.classList.add('nav-title');
-    console.log(proj);
+
     navTitle.textContent = proj.name;
 
     //add ID to data attributes
@@ -37,7 +37,7 @@ export default function projComp(proj) {
             localStorage.removeItem('myTodo');
         }
         navTitleElements.remove();
-        console.log(myPage);
+    
         loadItems(myPage.currentProject);
     })
 
@@ -46,7 +46,4 @@ export default function projComp(proj) {
 
     let nav = document.querySelector('.nav-projs');
     nav.appendChild(navTitleElements);
-    console.log(myPage);
-
-
 }

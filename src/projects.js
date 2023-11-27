@@ -32,7 +32,7 @@ export default class projects {
             const deletedEl = this._projects.splice(index,1); // array
             console.log(`${deletedEl[0].name} was deleted`);
             if (this._projects.length < 1) {
-                console.log('Undefineddd');
+
                 this._currentProject = undefined;
             } else {
                 this._currentProject = this._projects[this._projects.length - 1];
@@ -60,10 +60,9 @@ export default class projects {
 
     findProj(projID) {
         let proj = this._projects.find(function(p) {
-            console.log(p);
+            // console.log(p);
             return p.id === projID;
         })
-        console.log(proj);
         return proj;
     }
 }

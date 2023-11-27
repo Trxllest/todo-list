@@ -1,7 +1,6 @@
 import deleteIcon from './imgs/delete-outline.svg';
 import editIcon from './imgs/pencil-outline.svg';
 import { myPage, saveProjects } from '.';
-import {dialogBox, submitType} from '.';
 
 export default function toDoComp(task) {
 
@@ -19,7 +18,6 @@ export default function toDoComp(task) {
     //Title
     let title = document.createElement('div');
     title.classList.add('to-do-title')
-    console.log(task.title);
     title.textContent = task.title;
 
     // Due Date
@@ -75,7 +73,7 @@ export default function toDoComp(task) {
         card.classList.toggle('expanded');
     });
 
-    console.log(`the cards id is: ${card.dataset.toDoId}`);
+    // console.log(`the cards id is: ${card.dataset.toDoId}`);
 
 }
 

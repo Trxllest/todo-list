@@ -30,7 +30,7 @@ export default class project {
 
     generateID(){
         let id = crypto.randomUUID();
-        console.log(`This is the ID: ${id}`);
+        // console.log(`This is the ID: ${id}`);
         return id;
     }
     
