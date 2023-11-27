@@ -145,3 +145,49 @@ body {
 }
 
 /* --------------------------------------- */
+
+
+/* Dialog */
+
+/* Styles for the dialog container */
+dialog {
+    border: 1px solid var(--dark-accent);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Styles for the form within the dialog */
+form {
+    padding: 20px;
+    background-color: var(--light-accent);
+}
+
+/* Styles for labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Styles for input and textarea */
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/* Styles for buttons */
+button {
+    background-color: var(--dark-accent);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e57373; /* Change to your desired hover color */
+}
