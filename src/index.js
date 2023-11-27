@@ -11,7 +11,7 @@ const title = document.getElementById('title');
 const date = document.getElementById('date');
 const desc = document.getElementById('desc');
 const priority = document.getElementById('priority');
-const dialogBox = document.getElementById('task-dialog');
+export const dialogBox = document.getElementById('task-dialog');
 const submitBtn = document.querySelector('.subAdd');
 const editBtn = document.querySelector('.subEdit');
 const cancelAdd = document.getElementById('cancelBtn');
@@ -32,28 +32,53 @@ getSavedProjects();
 let loadedPage = JSON.parse(localStorage.getItem('myTodo'));
 console.log(loadedPage);
 
-myPage.findProj('bb202301-ee6b-4a4f-9377-13a37ad24abc');
-
 render.renderPage(myPage);
 
 // Open dialog to add a todo card
 addbtn.addEventListener('click', () => {
+    document.getElementById('taskId').value = '';
     dialogBox.showModal();
 });
 
 // Submit new a todo card
 submitBtn.addEventListener('click', (e) =>{
     e.preventDefault();
-    const todo = new toDo(title.value, date.value, desc.value ,priority.value);
-    myPage.currentProject.addTask(todo);
+    // Get the values from the form
+    const taskId = document.getElementById('taskId').value;
+    const newTitle = document.getElementById('title').value;
+    const newDate = document.getElementById('date').value;
+    const newDesc = document.getElementById('desc').value;
+    const newPriority = document.getElementById('priority').value;
+
+    if (taskId) {
+        // Editing an existing task
+        console.log('Edited task');
+        const task = myPage.currentProject.tasks.find(t => t.id === taskId);
+        if (task) {
+            task.title = newTitle;
+            task.desc = newDesc;
+            task.dueDate = newDate;
+            task.priority = newPriority;
+        }
+    } else {
+        // Adding a new task
+        console.log('added a new task');
+        const todo = new toDo(newTitle, newDate, newDesc, newPriority);
+        myPage.currentProject.addTask(todo);
+    }
+
+    // Reset form and close dialog
     title.value = '';
-    date.value = ''; 
+    date.value = '';
     desc.value = '';
     priority.value = '';
-    render.loadItems(myPage.currentProject);
     dialogBox.close();
+
+    // Save changes and update the display
     saveProjects(myPage);
+    render.loadItems(myPage.currentProject);
 });
+
 
 // Cancel adding a card
 cancelAdd.addEventListener('click', () => {
@@ -117,39 +142,3 @@ function getSavedProjects() {
 
 
 export {myPage};
-
-
-/* 
-
-MpPage [
-    Projects [
-        todos
-    ]
-]
-
-{
-    "_projects": [
-        {
-            "_name": "Project1",
-            "_tasks": [],
-            "_id": "b28849ca-05ac-4b60-87e9-6a1fad8a15e7"
-        },
-        {
-            "_name": "fbsdfb",
-            "_tasks": [],
-            "_id": "6a901a1a-bc38-4d71-8a7c-1e3720836088"
-        },
-        {
-            "_name": "yukytk",
-            "_tasks": [],
-            "_id": "f7896769-28f5-4aad-ad77-3dd45ea42574"
-        }
-    ],
-    "_currentProject": {
-        "_name": "yukytk",
-        "_tasks": [],
-        "_id": "f7896769-28f5-4aad-ad77-3dd45ea42574"
-    }
-}
-
-*/

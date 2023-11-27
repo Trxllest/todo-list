@@ -39,10 +39,15 @@ export default class project {
     }
 
     addTask(task) { //ToDo object
-        if (this._tasks.findIndex((el) => el.id === task.id) === -1) {
+        let taskIndex = this._tasks.findIndex((el) => el.id === task.id);
+        if (taskIndex === -1) {
             this._tasks.push(task);
         } else {
-            alert(`${this._tasks[task.title]} already exists`);
+            let oldTask = this._tasks[taskIndex];
+            oldTask.title = task.title;
+            oldTask.dueDate = task.dueDate;
+            oldTask.priority = task.priority;
+            oldTask.desc = task.desc;
         }
     }
 

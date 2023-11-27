@@ -1,12 +1,12 @@
 
 
 export default class toDo {
-    constructor(title, dueDate,desc,priority='low') { // str, datetime-local, str, str
+    constructor(title, dueDate,desc,priority='low', toDoId = this.generateID()) { // str, datetime-local, str, str
         this._title = title;
         this._dueDate = this.dateFormatter(dueDate); // <input type="datetime-local">
         this._desc = desc;
         this._priority = priority;
-        this._id = this.generateID();
+        this._id = toDoId;
     }
 
     get title() {

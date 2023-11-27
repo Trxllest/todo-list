@@ -1,6 +1,7 @@
 import './style.css';
 import toDoComp from './todoComp';
 import projComp from './projsComp';
+import { dialogBox } from '.';
 
 
 
@@ -32,6 +33,23 @@ export function loadItems(proj) { //current proj
         for (let t of proj.tasks) {
             
             toDoComp(t);
+            let editButtons = document.querySelectorAll('.edit-icon');
+            for (let b of editButtons) {
+                b.addEventListener('click', () => {
+                    const oldTitle = t.title || '';
+                    const oldDate = t.dueDate || '';
+                    const oldDesc = t.desc || '';
+                    const oldPriority = t.priority || 'low';
+                    
+                    document.getElementById('taskId').value = t.id;
+                    document.getElementById('title').value = oldTitle;
+                    const formattedDate = oldDate ? new Date(oldDate).toISOString().slice(0, 16) : '';
+                    document.getElementById('date').value = formattedDate;
+                    document.getElementById('desc').value = oldDesc;
+                    document.getElementById('priority').value = oldPriority;
+                    dialogBox.showModal();
+                });
+            }
         }
     } else {
         console.log('no tasks')
