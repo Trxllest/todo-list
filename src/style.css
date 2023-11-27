@@ -24,6 +24,7 @@ body {
     grid-template-rows: 8em 3fr;
 }
 
+
 /* Header Section */
 .header {
     grid-column: 1/3;
@@ -110,6 +111,25 @@ body {
     border: 1px solid var(--dark-accent);
 }
 
+.toDo.med-priority {
+    background-color: rgb(249, 148, 23, 0.7);
+}
+
+.toDo.high-priority {
+    background-color: rgb(180, 34, 34, 0.6)
+}
+
+.toDo .to-do-description {
+    display: none;
+}
+
+.toDo:hover .to-do-description {
+    display: block;
+}
+
+.toDo.expanded .to-do-description {
+    display: block;
+}
 /* --------------------------------------- */
 
 /* Icons and Images */

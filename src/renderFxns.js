@@ -34,14 +34,18 @@ export function loadItems(proj) { //current proj
             
             toDoComp(t);
             let editButtons = document.querySelectorAll('.edit-icon');
+            // edit buttons
             for (let b of editButtons) {
                 b.addEventListener('click', () => {
-                    const oldTitle = t.title || '';
-                    const oldDate = t.dueDate || '';
-                    const oldDesc = t.desc || '';
-                    const oldPriority = t.priority || 'low';
+                    let taskID = b.dataset.toDoId;
+                    let taskIdx =  proj.tasks.findIndex((el) => el.id === taskID);
+                    let task = proj.tasks[taskIdx]
+                    const oldTitle = task.title || '';
+                    const oldDate = task.dueDate || '';
+                    const oldDesc = task.desc || '';
+                    const oldPriority = task.priority || 'low';
                     
-                    document.getElementById('taskId').value = t.id;
+                    document.getElementById('taskId').value = task.id;
                     document.getElementById('title').value = oldTitle;
                     const formattedDate = oldDate ? new Date(oldDate).toISOString().slice(0, 16) : '';
                     document.getElementById('date').value = formattedDate;

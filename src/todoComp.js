@@ -27,8 +27,23 @@ export default function toDoComp(task) {
     due.classList.add('to-do-dueDate');
     due.textContent = task.dueDate.toDateString(); 
 
+    // Description
+    const description = document.createElement('div');
+    description.classList.add('to-do-description');
+    description.textContent = task.desc;
+
+    // priority colour code:
+    if (task.priority === 'high') {
+        card.classList.add('high-priority')
+    } else if (task.priority === 'med') {
+        card.classList.add('med-priority')
+    } else {
+        card.classList.add('low-priority')
+    }
+
     cardLeft.appendChild(title);
     cardLeft.appendChild(due);
+    cardLeft.appendChild(description); // Add description element
 
     //Icons
     const deleteTodo = new Image();
@@ -45,6 +60,7 @@ export default function toDoComp(task) {
     editTodo.src = editIcon;
     editTodo.classList.add('icon');
     editTodo.classList.add('edit-icon');
+    editTodo.dataset.toDoId = task.id;
 
 
     cardRight.appendChild(editTodo);
@@ -54,6 +70,10 @@ export default function toDoComp(task) {
     card.appendChild(cardRight);
 
     document.querySelector('.tasks').appendChild(card);
+
+    card.addEventListener('click', () => {
+        card.classList.toggle('expanded');
+    });
 
     console.log(`the cards id is: ${card.dataset.toDoId}`);
 
